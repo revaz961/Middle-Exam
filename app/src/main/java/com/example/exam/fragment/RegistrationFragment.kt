@@ -40,14 +40,13 @@ class RegistrationFragment : Fragment() {
         }
 
         binding!!.btnRegister.setOnClickListener {
-            register()
+            register(email.get()!!.trim(), password.get()!!.trim())
         }
     }
 
-    private fun register() {
-        d("emailpassword","${email.get()!!.trim()} ${password.get()!!.trim()}")
+    private fun register(email: String, password: String) {
         FirebaseAuth.getInstance()
-            .createUserWithEmailAndPassword(email.get()!!.trim(), password.get()!!.trim())
+            .createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     findNavController().navigateUp()

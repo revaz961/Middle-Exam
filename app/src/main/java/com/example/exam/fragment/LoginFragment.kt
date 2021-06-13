@@ -1,13 +1,12 @@
 package com.example.exam.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.databinding.ObservableField
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.exam.R
 import com.example.exam.databinding.FragmentLoginBinding
@@ -35,25 +34,24 @@ class LoginFragment : Fragment() {
         binding!!.email = email
         binding!!.password = password
         binding!!.btnLogin.setOnClickListener {
-            login()
+            login(email.get()!!.trim(), password.get()!!.trim())
         }
         binding!!.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
         }
     }
 
-    private fun login() {
+    private fun login(email: String, password: String) {
+
         FirebaseAuth.getInstance()
-            .signInWithEmailAndPassword(email.get()!!.trim(), password.get()!!.trim())
+            .signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                 } else {
-                    Snackbar.make(
-                        requireView(), "Authentication failed.",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
+                    Snackbar.make(requireView(), "Login Faild", Snackbar.LENGTH_LONG).show()
                 }
             }
     }
+
 }
