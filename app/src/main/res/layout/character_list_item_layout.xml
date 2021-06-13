@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="character"
+            type="com.example.exam.api.model.Character" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="15dp"
+        app:cardBackgroundColor="@color/list_item_bg">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/ivCharacter"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:error="@{@drawable/ic_launcher_background}"
+                app:imageUrl="@{character.image}"
+                app:layout_constraintBottom_toBottomOf="@id/tvFirstSeenIn"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvName" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:paddingTop="5dp"
+                android:text="@{character.name}"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/text_main"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/ivCharacter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/liveStatus"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginRight="5dp"
+                android:background='@{character.status.contains("Dead") ? @drawable/alive_false_circle : character.status.contains("Alive") ? @drawable/alive_true_circle : @drawable/alive_unknown_circle}'
+                app:layout_constraintBottom_toBottomOf="@id/tvSpecies"
+                app:layout_constraintEnd_toStartOf="@id/tvSpecies"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toTopOf="@id/tvSpecies" />
+
+            <TextView
+                android:id="@+id/tvSpecies"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{character.species}"
+                android:textColor="@color/text_main"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/liveStatus"
+                app:layout_constraintTop_toBottomOf="@id/tvName" />
+
+            <TextView
+                android:id="@+id/tvLastLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/last_known_location"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@id/tvSpecies" />
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{character.location.name}"
+                android:textColor="@color/text_main"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@id/tvLastLocation" />
+
+            <TextView
+                android:id="@+id/tvFirstSeen"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+
+                android:text="@string/first_seen_in"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@id/tvLocation" />
+
+            <TextView
+                android:id="@+id/tvFirstSeenIn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="@{character.origin.name}"
+                android:textColor="@color/text_main"
+                android:ellipsize="end"
+                android:maxLines="1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tvName"
+                app:layout_constraintTop_toBottomOf="@id/tvFirstSeen" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>
