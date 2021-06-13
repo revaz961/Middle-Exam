@@ -1,15 +1,13 @@
-package com.example.exam.fragment
+package com.example.exam.fragment.episode
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.exam.CharacterViewModel
-import com.example.exam.R
+import com.example.exam.fragment.Character.CharacterViewModel
 import com.example.exam.adapter.EpisodeAdapter
 import com.example.exam.api.EndPoint
 import com.example.exam.api.ResultHandler

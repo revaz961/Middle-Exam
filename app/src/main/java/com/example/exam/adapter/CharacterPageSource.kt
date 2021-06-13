@@ -6,7 +6,7 @@ import androidx.paging.PagingState
 import com.example.exam.api.RetrofitService
 import com.example.exam.api.model.Character
 
-class MyPageSource() :
+class CharacterPageSource() :
     PagingSource<Int, Character>() {
 
     override fun getRefreshKey(state: PagingState<Int, Character>): Int? {

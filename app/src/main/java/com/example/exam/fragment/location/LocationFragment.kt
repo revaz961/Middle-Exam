@@ -1,15 +1,13 @@
-package com.example.exam.fragment
+package com.example.exam.fragment.location
 
 import android.os.Bundle
-import android.util.Log.d
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.exam.CharacterViewModel
+import com.example.exam.fragment.Character.CharacterViewModel
 import com.example.exam.R
-import com.example.exam.api.EndPoint
 
 
 class LocationFragment : Fragment() {

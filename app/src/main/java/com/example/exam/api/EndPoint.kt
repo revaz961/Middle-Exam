@@ -2,15 +2,21 @@ package com.example.exam.api
 
 enum class EndPoint {
     CHARACTER {
-        override fun getEndPoint() = "character"
+        override val endPoint: String
+            get() = "character"
+
     },
     LOCATION {
-        override fun getEndPoint() = "location"
+        override val endPoint: String
+            get() = "location"
+
     },
     EPISODE {
-        override fun getEndPoint() = "episode"
+        override val endPoint: String
+            get() = "episode"
+
     };
 
 
-    abstract fun getEndPoint():String
+    abstract val endPoint:String
 }

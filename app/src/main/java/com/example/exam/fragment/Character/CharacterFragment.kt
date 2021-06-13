@@ -1,26 +1,18 @@
-package com.example.exam.fragment
+package com.example.exam.fragment.Character
 
 import android.os.Bundle
-import android.util.Log.d
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.exam.CharacterViewModel
-import com.example.exam.R
 import com.example.exam.adapter.CharacterAdapter
 import com.example.exam.api.EndPoint
 import com.example.exam.api.ResultHandler
-import com.example.exam.api.model.Character
-import com.example.exam.api.model.PageResult
 import com.example.exam.databinding.FragmentCharacterBinding
-import retrofit2.Response
 
 
 class CharacterFragment : Fragment() {

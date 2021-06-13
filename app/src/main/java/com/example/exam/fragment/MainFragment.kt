@@ -9,6 +9,9 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.exam.R
 import com.example.exam.adapter.ViewPagerAdapter
 import com.example.exam.databinding.FragmentMainBinding
+import com.example.exam.fragment.Character.CharacterFragment
+import com.example.exam.fragment.episode.EpisodeFragment
+import com.example.exam.fragment.location.LocationFragment
 
 
 class MainFragment : Fragment() {
