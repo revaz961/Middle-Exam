@@ -6,41 +6,51 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.exam.fragment.Character.CharacterViewModel
 import com.example.exam.R
+import com.example.exam.adapter.CharacterAdapter
+import com.example.exam.adapter.EpisodeAdapter
+import com.example.exam.adapter.LocationAdapter
+import com.example.exam.databinding.FragmentCharacterBinding
+import com.example.exam.databinding.FragmentLocationBinding
+import com.example.exam.databinding.FragmentLoginBinding
 
 
 class LocationFragment : Fragment() {
-    private val characterViewMode: CharacterViewModel by viewModels()
 
+    private var binding: FragmentLocationBinding? = null
+    private lateinit var locationAdapter: LocationAdapter
+    private val locationViewModel: LocationViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_location, container, false)
+        if (binding == null) {
+            binding = FragmentLocationBinding.inflate(layoutInflater)
+            init()
+        }
+        return binding!!.root
     }
 
+    private fun init(){
+        observes()
+        initRecycler()
+    }
 
-//    override fun onStart() {
-//        super.onStart()
-//        init()
-//    }
-//
-//    private fun init(){
-//        observes()
-//        characterViewMode.getResult(EndPoint.LOCATION.getEndPoint())
-//        characterViewMode.getResult(EndPoint.LOCATION.getEndPoint(),"1,5,8,12")
-//    }
-//
-//    private fun observes(){
-//        characterViewMode.locationLiveData.observe(viewLifecycleOwner,{
-//            d("Location","${it}")
-//        })
-//
-//        characterViewMode.locationsLiveData.observe(viewLifecycleOwner,{
-//            d("Locations","${it}")
-//        })
-//    }
+    private fun initRecycler(){
+        locationAdapter = LocationAdapter {
+
+        }
+        binding!!.rvLocation.layoutManager = LinearLayoutManager(requireContext())
+        binding!!.rvLocation.adapter = locationAdapter
+    }
+
+    private fun observes(){
+        locationViewModel.locationList.observe(viewLifecycleOwner,{
+            locationAdapter.submitData(lifecycle,it)
+        })
+    }
+
 }

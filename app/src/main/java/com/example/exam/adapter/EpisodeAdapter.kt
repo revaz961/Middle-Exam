@@ -26,7 +26,7 @@ class EpisodeAdapter(private val click: (episode: Episode) -> Unit) :
             val model = getItem(absoluteAdapterPosition)
             binding.episode = model
             val adapter = EpisodeCharacterAdapter()
-            adapter.setCharacter(characters.filter { model!!.characters!!.contains(it.url!!) })
+            adapter.setCharacter(model?.characters!!)
             val layoutManager =
                 LinearLayoutManager(binding.root.context)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL

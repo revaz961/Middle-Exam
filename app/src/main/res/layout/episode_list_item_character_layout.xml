@@ -6,28 +6,31 @@
     <data>
         <variable
             name="character"
-            type="com.example.exam.api.model.Character" />
+            type="String" />
     </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginRight="20dp"
+        >
 
         <ImageView
-            android:layout_width="300px"
-            android:layout_height="300px"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
             app:error="@{@drawable/ic_launcher_background}"
-            app:imageUrl="@{character.image}"
+            app:imageUrl="@{character}"
             android:layout_marginBottom="10dp"
             />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:text="@{character.name}"
+            android:text="@{character}"
             android:textColor="@color/text_main"
-            android:textSize="15sp"/>
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"/>
 
     </LinearLayout>
 </layout>

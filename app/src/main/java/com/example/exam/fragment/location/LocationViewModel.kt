@@ -4,6 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.liveData
+import com.example.exam.adapter.EpisodePageSource
+import com.example.exam.adapter.LocationPageSource
 import com.example.exam.api.ResultHandler
 import com.example.exam.api.RetrofitService
 import com.example.exam.api.model.Location
@@ -20,6 +25,14 @@ class LocationViewModel : ViewModel(), IPost {
 
     private val _locationsLiveData = MutableLiveData<ResultHandler<PageResult<Location>>>()
     val locationsLiveData: LiveData<ResultHandler<PageResult<Location>>> = _locationsLiveData
+
+    val locationList = Pager(
+        PagingConfig(
+            pageSize = 20
+        )
+    ) {
+        LocationPageSource()
+    }.liveData
 
     fun getLocation(id: String = "", options: Map<String, String> = mapOf()) {
         viewModelScope.launch {

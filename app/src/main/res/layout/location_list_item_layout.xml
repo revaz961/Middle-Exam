@@ -3,8 +3,8 @@
 
     <data>
         <variable
-            name="episode"
-            type="com.example.exam.api.model.Episode" />
+            name="location"
+            type="com.example.exam.api.model.Location" />
     </data>
 
     <LinearLayout
@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:text="@{episode.episode}"
+            android:text="@{location.name}"
             android:textSize="20sp"
             android:textColor="@color/text_main"
             android:layout_marginBottom="10dp"
@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:text="@{episode.name}"
+            android:text="@{location.type}"
             android:textSize="20sp"
             android:textColor="@color/text_main"
             android:layout_marginBottom="10dp"
@@ -34,20 +34,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
+            android:text="@{location.dimension}"
             android:textColor="@color/text_main"
-            android:text="@{episode.air_date}"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"
             />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="1"
-            android:text="@{episode.created}"
-            android:textSize="20sp"
-            android:textColor="@color/text_main"
-            android:layout_marginBottom="10dp"
-            />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCharacter"
             android:layout_width="match_parent"

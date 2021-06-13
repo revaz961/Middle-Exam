@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.exam.adapter.CharacterAdapter
-import com.example.exam.api.EndPoint
 import com.example.exam.api.ResultHandler
 import com.example.exam.databinding.FragmentCharacterBinding
 
@@ -18,7 +17,7 @@ import com.example.exam.databinding.FragmentCharacterBinding
 class CharacterFragment : Fragment() {
 
     private var binding: FragmentCharacterBinding? = null
-    private val characterViewMode: CharacterViewModel by viewModels()
+    private val characterViewModel: CharacterViewModel by viewModels()
     private var characterAdapter: CharacterAdapter? = null
 
     override fun onCreateView(
@@ -35,7 +34,6 @@ class CharacterFragment : Fragment() {
     private fun init() {
         observes()
         initRecycler()
-        characterViewMode.getResult(EndPoint.CHARACTER.getEndPoint())
     }
 
     private fun initRecycler() {
@@ -49,11 +47,11 @@ class CharacterFragment : Fragment() {
     }
 
     private fun observes() {
-        characterViewMode.characterList.observe(viewLifecycleOwner, {
+        characterViewModel.characterList.observe(viewLifecycleOwner, {
             characterAdapter!!.submitData(lifecycle, it)
         })
 
-        characterViewMode.characterLiveData.observe(viewLifecycleOwner, {
+        characterViewModel.characterLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is ResultHandler.Success -> {
 //                    if (it.data is Character) {
@@ -65,7 +63,7 @@ class CharacterFragment : Fragment() {
             }
         })
 
-        characterViewMode.charactersLiveData.observe(viewLifecycleOwner, {
+        characterViewModel.charactersLiveData.observe(viewLifecycleOwner, {
             when (it) {
                 is ResultHandler.Success -> {
 //                    if (it.data is PageResult<Character>) {

@@ -1,59 +1,61 @@
 package com.example.exam.fragment
 
 import android.os.Bundle
+import android.util.Log.d
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.ObservableField
+import androidx.navigation.fragment.findNavController
 import com.example.exam.R
+import com.example.exam.databinding.FragmentLoginBinding
+import com.example.exam.databinding.FragmentRegistrationBinding
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RegistrationFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RegistrationFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var binding: FragmentRegistrationBinding? = null
+    private var email = ObservableField<String>()
+    private var password = ObservableField<String>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_registration, container, false)
+        if (binding == null) {
+            binding = FragmentRegistrationBinding.inflate(layoutInflater)
+            init()
+        }
+        return binding!!.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment RegistrationFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            RegistrationFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun init() {
+        binding!!.email = email
+        binding!!.password = password
+        binding!!.btnSignUp.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding!!.btnRegister.setOnClickListener {
+            register()
+        }
+    }
+
+    private fun register() {
+        d("emailpassword","${email.get()!!.trim()} ${password.get()!!.trim()}")
+        FirebaseAuth.getInstance()
+            .createUserWithEmailAndPassword(email.get()!!.trim(), password.get()!!.trim())
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    findNavController().navigateUp()
+                } else {
+                    Snackbar.make(
+                        requireView(), "Authentication failed.",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             }
     }
