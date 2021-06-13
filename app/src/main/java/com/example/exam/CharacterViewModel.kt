@@ -65,7 +65,6 @@ class CharacterViewModel : ViewModel() {
         }
     }
 
-
     private suspend fun getCharacter(point: String, id: String, options: Map<String, String>) {
 
         if (id.isNotEmpty() && !id.contains(',')) {
@@ -119,10 +118,11 @@ class CharacterViewModel : ViewModel() {
     private suspend fun <T> post(
         liveData: MutableLiveData<ResultHandler<T>>,
         response: Response<T>
-    ) {
+    ):T {
         val body = response.body()
         if (response.isSuccessful) {
             liveData.postValue(ResultHandler.Success<T>(body))
         }
+        return body!!
     }
 }

@@ -48,10 +48,6 @@ class CharacterFragment : Fragment() {
 
     private fun initRecycler() {
         characterAdapter = CharacterAdapter {
-            findNavController().navigate(
-                R.id.action_mainFragment_to_characterInfoFragment2,
-                bundleOf("character" to it)
-            )
         }
         binding!!.rvCharacter.layoutManager = LinearLayoutManager(requireContext())
         binding!!.rvCharacter.adapter = characterAdapter

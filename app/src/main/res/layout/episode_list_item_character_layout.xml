@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <data>
+        <variable
+            name="character"
+            type="com.example.exam.api.model.Character" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="300px"
+            android:layout_height="300px"
+            app:error="@{@drawable/ic_launcher_background}"
+            app:imageUrl="@{character.image}"
+            android:layout_marginBottom="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{character.name}"
+            android:textColor="@color/text_main"
+            android:textSize="15sp"/>
+
+    </LinearLayout>
+</layout>

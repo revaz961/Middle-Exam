@@ -25,24 +25,24 @@ class LocationFragment : Fragment() {
     }
 
 
-    override fun onStart() {
-        super.onStart()
-        init()
-    }
-
-    private fun init(){
-        observes()
-        characterViewMode.getResult(EndPoint.LOCATION.getEndPoint())
-        characterViewMode.getResult(EndPoint.LOCATION.getEndPoint(),"1,5,8,12")
-    }
-
-    private fun observes(){
-        characterViewMode.locationLiveData.observe(viewLifecycleOwner,{
-            d("Location","${it}")
-        })
-
-        characterViewMode.locationsLiveData.observe(viewLifecycleOwner,{
-            d("Locations","${it}")
-        })
-    }
+//    override fun onStart() {
+//        super.onStart()
+//        init()
+//    }
+//
+//    private fun init(){
+//        observes()
+//        characterViewMode.getResult(EndPoint.LOCATION.getEndPoint())
+//        characterViewMode.getResult(EndPoint.LOCATION.getEndPoint(),"1,5,8,12")
+//    }
+//
+//    private fun observes(){
+//        characterViewMode.locationLiveData.observe(viewLifecycleOwner,{
+//            d("Location","${it}")
+//        })
+//
+//        characterViewMode.locationsLiveData.observe(viewLifecycleOwner,{
+//            d("Locations","${it}")
+//        })
+//    }
 }
