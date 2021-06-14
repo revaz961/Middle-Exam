@@ -9,4 +9,6 @@
     <string name="password">Password:</string>
     <string name="register">register</string>
     <string name="unknown">unknown</string>
+    <string name="location">Location</string>
+    <string name="episode">Episode</string>
 </resources>

@@ -1,21 +1,20 @@
 package com.example.exam.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.exam.api.RetrofitService
 import com.example.exam.api.model.Character
-import com.example.exam.databinding.EpisodeListItemCharacterLayoutBinding
+import com.example.exam.databinding.CommonListItemCharacterLayoutBinding
 
 class EpisodeCharacterAdapter :
     RecyclerView.Adapter<EpisodeCharacterAdapter.CharacterViewHolder>() {
-    private val characters = mutableListOf<String>()
-    fun setCharacter(list: List<String>) {
+    private val characters = mutableListOf<Character>()
+    fun setCharacter(list: List<Character>) {
         characters.addAll(list)
+        notifyDataSetChanged()
     }
 
-    inner class CharacterViewHolder(private val binding: EpisodeListItemCharacterLayoutBinding) :
+    inner class CharacterViewHolder(private val binding: CommonListItemCharacterLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             val model = characters[absoluteAdapterPosition]
@@ -25,7 +24,7 @@ class EpisodeCharacterAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         return CharacterViewHolder(
-            EpisodeListItemCharacterLayoutBinding.inflate(
+            CommonListItemCharacterLayoutBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

@@ -61,28 +61,5 @@ class CharacterFragment : Fragment() {
         characterViewModel.characterList.observe(viewLifecycleOwner, {
             characterAdapter!!.submitData(lifecycle, it)
         })
-
-        characterViewModel.characterLiveData.observe(viewLifecycleOwner, {
-            when (it) {
-                is ResultHandler.Success -> {
-//                    if (it.data is Character) {
-//                        val items = it.data
-//                        d("character",items.toString())
-//                        characterAdapter!!.setCharacter(listOf(items))
-//                    }
-                }
-            }
-        })
-
-        characterViewModel.charactersLiveData.observe(viewLifecycleOwner, {
-            when (it) {
-                is ResultHandler.Success -> {
-//                    if (it.data is PageResult<Character>) {
-//                        d("Characters",it.data.results.toString())
-//                        characterAdapter!!.setCharacter(it.data.results!!)
-//                    }
-                }
-            }
-        })
     }
 }

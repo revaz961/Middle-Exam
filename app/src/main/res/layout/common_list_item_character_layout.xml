@@ -6,12 +6,12 @@
     <data>
         <variable
             name="character"
-            type="String" />
+            type="com.example.exam.api.model.Character" />
     </data>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="210dp"
         android:orientation="vertical"
         android:layout_marginRight="20dp"
         >
@@ -20,14 +20,14 @@
             android:layout_width="160dp"
             android:layout_height="160dp"
             app:error="@{@drawable/ic_launcher_background}"
-            app:imageUrl="@{character}"
+            app:imageUrl="@{character.image}"
             android:layout_marginBottom="10dp"
             />
 
         <TextView
             android:layout_width="160dp"
             android:layout_height="wrap_content"
-            android:text="@{character}"
+            android:text="@{character.name}"
             android:textColor="@color/text_main"
             android:textSize="20sp"
             android:layout_marginBottom="10dp"/>

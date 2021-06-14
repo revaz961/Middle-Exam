@@ -37,8 +37,8 @@ class EpisodeFragment : Fragment() {
     }
 
     private fun initRecycler(){
-        episodeAdapter = EpisodeAdapter {
-
+        episodeAdapter = EpisodeAdapter { adapter, list ->
+            episodeViewModel.getCharacters(adapter,list)
         }
         binding!!.rvEpisode.layoutManager = LinearLayoutManager(requireContext())
         binding!!.rvEpisode.adapter = episodeAdapter

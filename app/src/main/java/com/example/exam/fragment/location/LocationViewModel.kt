@@ -7,18 +7,17 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
-import com.example.exam.adapter.EpisodePageSource
 import com.example.exam.adapter.LocationPageSource
 import com.example.exam.api.ResultHandler
 import com.example.exam.api.RetrofitService
 import com.example.exam.api.model.Location
 import com.example.exam.api.model.PageResult
-import com.example.exam.common.IPost
+import com.example.exam.common.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class LocationViewModel : ViewModel(), IPost {
+class LocationViewModel : BaseViewModel() {
 
     private val _locationLiveData = MutableLiveData<ResultHandler<Location>>()
     val locationLiveData: LiveData<ResultHandler<Location>> = _locationLiveData

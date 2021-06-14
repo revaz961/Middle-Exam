@@ -6,15 +6,24 @@
 
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".fragment.episode.EpisodeFragment">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="@string/episode"
+            android:layout_gravity="center"
+            android:textColor="@color/text_main"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvEpisode"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-    </FrameLayout>
+    </LinearLayout>
 </layout>

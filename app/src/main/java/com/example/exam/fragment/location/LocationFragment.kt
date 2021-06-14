@@ -34,22 +34,22 @@ class LocationFragment : Fragment() {
         return binding!!.root
     }
 
-    private fun init(){
+    private fun init() {
         observes()
         initRecycler()
     }
 
-    private fun initRecycler(){
-        locationAdapter = LocationAdapter {
-
+    private fun initRecycler() {
+        locationAdapter = LocationAdapter { adapter, list ->
+            locationViewModel.getCharacters(adapter, list)
         }
         binding!!.rvLocation.layoutManager = LinearLayoutManager(requireContext())
         binding!!.rvLocation.adapter = locationAdapter
     }
 
-    private fun observes(){
-        locationViewModel.locationList.observe(viewLifecycleOwner,{
-            locationAdapter.submitData(lifecycle,it)
+    private fun observes() {
+        locationViewModel.locationList.observe(viewLifecycleOwner, {
+            locationAdapter.submitData(lifecycle, it)
         })
     }
 

@@ -7,22 +7,17 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
-import com.example.exam.adapter.EpisodePageSource
 import com.example.exam.adapter.CharacterPageSource
-import com.example.exam.api.EndPoint
 import com.example.exam.api.ResultHandler
 import com.example.exam.api.RetrofitService
 import com.example.exam.api.model.Character
-import com.example.exam.api.model.Episode
-import com.example.exam.api.model.Location
 import com.example.exam.api.model.PageResult
-import com.example.exam.common.IPost
+import com.example.exam.common.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import retrofit2.Response
 
-class CharacterViewModel : ViewModel(), IPost {
+class CharacterViewModel : BaseViewModel() {
 
     private val _characterLiveData = MutableLiveData<ResultHandler<Character>>()
     val characterLiveData: LiveData<ResultHandler<Character>> = _characterLiveData

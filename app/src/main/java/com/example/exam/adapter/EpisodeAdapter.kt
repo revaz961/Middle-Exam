@@ -15,24 +15,18 @@ import com.example.exam.databinding.EpisodeListItemLayoutBinding
 class EpisodeAdapter(private val load: (adapter: EpisodeCharacterAdapter,List<String>) -> Unit) :
     PagingDataAdapter<Episode, EpisodeAdapter.EpisodeViewHolder>(EpisodeComparator) {
 
-    private val characters = mutableListOf<Character>()
-    fun setCharacter(list: List<Character>) {
-        characters.addAll(list)
-    }
-
     inner class EpisodeViewHolder(private val binding: EpisodeListItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind() {
             val model = getItem(absoluteAdapterPosition)
             binding.episode = model
             val adapter = EpisodeCharacterAdapter()
-            adapter.setCharacter(model?.characters!!)
             val layoutManager =
                 LinearLayoutManager(binding.root.context)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
             binding.rvCharacter.layoutManager = layoutManager
             binding.rvCharacter.adapter = adapter
-
+            load(adapter,model?.characters!!)
         }
     }
 

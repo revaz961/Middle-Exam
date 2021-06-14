@@ -23,6 +23,13 @@ interface RickAndMortyService {
         @QueryMap() options:Map<String,String> = mapOf()
     ): Response<PageResult<Character>>
 
+    @GET("character/{id}")
+    suspend fun getCharactersById(
+        @Path("id") id: String = "",
+        @Query("page") page: Int = 0,
+        @QueryMap() options:Map<String,String> = mapOf()
+    ): Response<List<Character>>
+
     @GET("episode/{id}")
     suspend fun getEpisode(
         @Path("id") id: String

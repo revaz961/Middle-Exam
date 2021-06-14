@@ -8,17 +8,17 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.liveData
 import com.example.exam.adapter.EpisodePageSource
+import com.example.exam.api.EndPoint
 import com.example.exam.api.ResultHandler
 import com.example.exam.api.RetrofitService
-import com.example.exam.api.model.Character
 import com.example.exam.api.model.Episode
 import com.example.exam.api.model.PageResult
-import com.example.exam.common.IPost
+import com.example.exam.common.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class EpisodeViewModel : ViewModel(), IPost {
+class EpisodeViewModel : BaseViewModel() {
 
     private val _episodeLiveData = MutableLiveData<ResultHandler<Episode>>()
     val episodeLiveData: LiveData<ResultHandler<Episode>> = _episodeLiveData
@@ -39,12 +39,12 @@ class EpisodeViewModel : ViewModel(), IPost {
     fun getEpisode(id: String = "", options: Map<String, String> = mapOf()) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                getResult(id, options)
+                getResult(EndPoint.EPISODE.endPoint, id, options)
             }
         }
     }
 
-    private suspend fun getResult(id: String, options: Map<String, String>) {
+    private suspend fun getResult(endpoint: String, id: String, options: Map<String, String>) {
 
         if (id.isNotEmpty() && !id.contains(',')) {
             post<Episode>(
@@ -57,5 +57,4 @@ class EpisodeViewModel : ViewModel(), IPost {
                 RetrofitService.retrofitService.getEpisodes(id, options = options)
             )
     }
-
 }
