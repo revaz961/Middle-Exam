@@ -32,5 +32,15 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/bottom_navigation_menu" />
+
+        <ImageButton
+            android:id="@+id/logOut"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/power_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_margin="10dp"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -9,6 +9,7 @@ import androidx.databinding.ObservableField
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.exam.R
+import com.example.exam.SharedPreferenceViewModel
 import com.example.exam.databinding.FragmentLoginBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -19,6 +20,8 @@ class LoginFragment : Fragment() {
     private var binding: FragmentLoginBinding? = null
     private var email = ObservableField<String>()
     private var password = ObservableField<String>()
+    private val sharedPreference: SharedPreferenceViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,7 +38,13 @@ class LoginFragment : Fragment() {
         binding!!.password = password
         binding!!.btnLogin.setOnClickListener {
             binding!!.btnLogin.isClickable = false
-            login(email.get()!!.trim(), password.get()!!.trim())
+            if (email.get() != null && email.get()!!.isNotEmpty()
+                && password.get() != null && password.get()!!.isNotEmpty())
+                login(email.get()!!.trim(), password.get()!!.trim())
+            else {
+                Snackbar.make(requireView(), "Login Faild", Snackbar.LENGTH_LONG).show()
+                binding!!.btnLogin.isClickable = true
+            }
         }
         binding!!.btnRegister.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
@@ -48,6 +57,8 @@ class LoginFragment : Fragment() {
             .signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
+                    if (binding!!.checkRemember.isChecked)
+                        sharedPreference.setUser(email, password)
                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                 } else {
                     binding!!.btnLogin.isClickable = true

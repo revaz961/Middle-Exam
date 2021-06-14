@@ -5,8 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.exam.R
+import com.example.exam.SharedPreferenceViewModel
 import com.example.exam.adapter.ViewPagerAdapter
 import com.example.exam.databinding.FragmentMainBinding
 import com.example.exam.fragment.Character.CharacterFragment
@@ -18,6 +21,7 @@ class MainFragment : Fragment() {
 
     var binding: FragmentMainBinding? = null
     var pagerAdapter: ViewPagerAdapter? = null
+    private val sharedPreference: SharedPreferenceViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +37,10 @@ class MainFragment : Fragment() {
     private fun init() {
         initViewPager()
         initBottomNavigation()
+        binding!!.logOut.setOnClickListener {
+            sharedPreference.removeUser()
+            findNavController().navigate(R.id.action_mainFragment_to_loginFragment)
+        }
     }
 
     private fun initViewPager() {

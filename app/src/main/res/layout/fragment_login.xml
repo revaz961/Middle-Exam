@@ -21,13 +21,15 @@
 
 
         <TextView
+            android:id="@+id/tvLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SignIn"
             android:textColor="@color/text_main"
             android:textSize="25sp"
+            app:layout_constraintVertical_bias="0.2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/etEmail"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -44,8 +46,8 @@
             android:textColor="@color/text_main"
             android:textColorHint="@color/text_secondary"
             app:layout_constraintVertical_bias="0.30"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvLogin"
+            app:layout_constraintBottom_toTopOf="@id/etPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -61,16 +63,28 @@
             android:textColor="@color/text_main"
             android:textColorHint="@color/text_secondary"
             app:layout_constraintTop_toBottomOf="@id/etEmail"
-            app:layout_constraintBottom_toTopOf="@id/btnLogin"
+            app:layout_constraintBottom_toTopOf="@id/checkRemember"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <CheckBox
+            android:id="@+id/checkRemember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="remember me"
+            android:textColor="@color/text_main"
+            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            app:layout_constraintBottom_toTopOf="@id/btnLogin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/login"
-            app:layout_constraintTop_toBottomOf="@id/etPassword"
+            app:layout_constraintTop_toBottomOf="@id/checkRemember"
             app:layout_constraintBottom_toTopOf="@id/btnRegister"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -80,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/register"
-            app:layout_constraintVertical_bias="0.70"
+            app:layout_constraintVertical_bias="0.80"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

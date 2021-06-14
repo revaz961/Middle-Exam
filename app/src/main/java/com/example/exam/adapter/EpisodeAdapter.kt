@@ -12,7 +12,7 @@ import com.example.exam.api.model.Episode
 import com.example.exam.databinding.CharacterListItemLayoutBinding
 import com.example.exam.databinding.EpisodeListItemLayoutBinding
 
-class EpisodeAdapter(private val click: (episode: Episode) -> Unit) :
+class EpisodeAdapter(private val load: (adapter: EpisodeCharacterAdapter,List<String>) -> Unit) :
     PagingDataAdapter<Episode, EpisodeAdapter.EpisodeViewHolder>(EpisodeComparator) {
 
     private val characters = mutableListOf<Character>()
