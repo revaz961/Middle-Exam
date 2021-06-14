@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.exam.api.model.Character
 import com.example.exam.databinding.CommonListItemCharacterLayoutBinding
 
-class EpisodeCharacterAdapter :
+class EpisodeCharacterAdapter(private val click: (character: Character) -> Unit) :
     RecyclerView.Adapter<EpisodeCharacterAdapter.CharacterViewHolder>() {
     private val characters = mutableListOf<Character>()
     fun setCharacter(list: List<Character>) {
@@ -19,6 +19,9 @@ class EpisodeCharacterAdapter :
         fun bind() {
             val model = characters[absoluteAdapterPosition]
             binding.character = model
+            binding.root.setOnClickListener {
+                click(characters[absoluteAdapterPosition])
+            }
         }
     }
 

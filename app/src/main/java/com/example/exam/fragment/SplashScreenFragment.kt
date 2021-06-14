@@ -1,7 +1,5 @@
-package com.example.exam
+package com.example.exam.fragment
 
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
+import com.example.exam.R
+import com.example.exam.SharedPreferenceViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 
 class SplashScreenFragment : Fragment() {
 
-    private val sharedPreference:SharedPreferenceViewModel by activityViewModels()
+    private val sharedPreference: SharedPreferenceViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

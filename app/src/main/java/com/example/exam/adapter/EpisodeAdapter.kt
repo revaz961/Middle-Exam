@@ -12,7 +12,10 @@ import com.example.exam.api.model.Episode
 import com.example.exam.databinding.CharacterListItemLayoutBinding
 import com.example.exam.databinding.EpisodeListItemLayoutBinding
 
-class EpisodeAdapter(private val load: (adapter: EpisodeCharacterAdapter,List<String>) -> Unit) :
+class EpisodeAdapter(
+    private val click: (character: Character) -> Unit,
+    private val load: (adapter: EpisodeCharacterAdapter, List<String>) -> Unit
+) :
     PagingDataAdapter<Episode, EpisodeAdapter.EpisodeViewHolder>(EpisodeComparator) {
 
     inner class EpisodeViewHolder(private val binding: EpisodeListItemLayoutBinding) :
@@ -20,13 +23,13 @@ class EpisodeAdapter(private val load: (adapter: EpisodeCharacterAdapter,List<St
         fun bind() {
             val model = getItem(absoluteAdapterPosition)
             binding.episode = model
-            val adapter = EpisodeCharacterAdapter()
+            val adapter = EpisodeCharacterAdapter(click)
             val layoutManager =
                 LinearLayoutManager(binding.root.context)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
             binding.rvCharacter.layoutManager = layoutManager
             binding.rvCharacter.adapter = adapter
-            load(adapter,model?.characters!!)
+            load(adapter, model?.characters!!)
         }
     }
 

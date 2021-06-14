@@ -32,6 +32,12 @@ class RegistrationFragment : Fragment() {
         return binding!!.root
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
+    }
+
+
     private fun init() {
         binding!!.email = email
         binding!!.password = password

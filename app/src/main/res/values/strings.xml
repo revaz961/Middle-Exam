@@ -11,4 +11,7 @@
     <string name="unknown">unknown</string>
     <string name="location">Location</string>
     <string name="episode">Episode</string>
+    <string name="locations">Locations</string>
+    <string name="episodes">Episodes</string>
+    <string name="charachters">Charachters</string>
 </resources>
