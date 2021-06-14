@@ -34,6 +34,7 @@ class LoginFragment : Fragment() {
         binding!!.email = email
         binding!!.password = password
         binding!!.btnLogin.setOnClickListener {
+            binding!!.btnLogin.isClickable = false
             login(email.get()!!.trim(), password.get()!!.trim())
         }
         binding!!.btnRegister.setOnClickListener {
@@ -49,6 +50,7 @@ class LoginFragment : Fragment() {
                 if (task.isSuccessful) {
                     findNavController().navigate(R.id.action_loginFragment_to_mainFragment)
                 } else {
+                    binding!!.btnLogin.isClickable = true
                     Snackbar.make(requireView(), "Login Faild", Snackbar.LENGTH_LONG).show()
                 }
             }

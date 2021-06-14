@@ -8,4 +8,5 @@
     <string name="email">Email:</string>
     <string name="password">Password:</string>
     <string name="register">register</string>
+    <string name="unknown">unknown</string>
 </resources>

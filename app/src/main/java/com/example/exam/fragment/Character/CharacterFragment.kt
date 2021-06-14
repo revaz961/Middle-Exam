@@ -1,5 +1,6 @@
 package com.example.exam.fragment.Character
 
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +12,9 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.exam.adapter.CharacterAdapter
 import com.example.exam.api.ResultHandler
+import com.example.exam.databinding.CharacterImageDialogLayoutBinding
 import com.example.exam.databinding.FragmentCharacterBinding
+import com.example.exam.extension.init
 
 
 class CharacterFragment : Fragment() {
@@ -38,6 +41,14 @@ class CharacterFragment : Fragment() {
 
     private fun initRecycler() {
         characterAdapter = CharacterAdapter {
+            val dialogBinding = CharacterImageDialogLayoutBinding.inflate(layoutInflater)
+            dialogBinding.character = it
+            val dialog = Dialog(requireContext())
+            dialog.init(dialogBinding.root)
+            dialog.show()
+            dialogBinding.root.setOnClickListener {
+                dialog.cancel()
+            }
         }
         binding!!.rvCharacter.layoutManager = LinearLayoutManager(requireContext())
         binding!!.rvCharacter.adapter = characterAdapter
