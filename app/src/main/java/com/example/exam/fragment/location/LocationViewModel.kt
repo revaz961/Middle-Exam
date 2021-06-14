@@ -19,11 +19,6 @@ import kotlinx.coroutines.withContext
 
 class LocationViewModel : BaseViewModel() {
 
-    private val _locationLiveData = MutableLiveData<ResultHandler<Location>>()
-    val locationLiveData: LiveData<ResultHandler<Location>> = _locationLiveData
-
-    private val _locationsLiveData = MutableLiveData<ResultHandler<PageResult<Location>>>()
-    val locationsLiveData: LiveData<ResultHandler<PageResult<Location>>> = _locationsLiveData
 
     val locationList = Pager(
         PagingConfig(
@@ -33,25 +28,33 @@ class LocationViewModel : BaseViewModel() {
         LocationPageSource()
     }.liveData
 
-    fun getLocation(id: String = "", options: Map<String, String> = mapOf()) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                getResult(id, options)
-            }
-        }
-    }
 
-    private suspend fun getResult(id: String, options: Map<String, String>) {
 
-        if (id.isNotEmpty() && !id.contains(',')) {
-            post<Location>(
-                _locationLiveData,
-                RetrofitService.retrofitService.getLocation(id)
-            )
-        } else
-            post<PageResult<Location>>(
-                _locationsLiveData,
-                RetrofitService.retrofitService.getLocations(id, options = options)
-            )
-    }
+//    private val _locationLiveData = MutableLiveData<ResultHandler<Location>>()
+//    val locationLiveData: LiveData<ResultHandler<Location>> = _locationLiveData
+//
+//    private val _locationsLiveData = MutableLiveData<ResultHandler<PageResult<Location>>>()
+//    val locationsLiveData: LiveData<ResultHandler<PageResult<Location>>> = _locationsLiveData
+
+//    fun getLocation(id: String = "", options: Map<String, String> = mapOf()) {
+//        viewModelScope.launch {
+//            withContext(Dispatchers.IO) {
+//                getResult(id, options)
+//            }
+//        }
+//    }
+
+//    private suspend fun getResult(id: String, options: Map<String, String>) {
+//
+//        if (id.isNotEmpty() && !id.contains(',')) {
+//            post<Location>(
+//                _locationLiveData,
+//                RetrofitService.retrofitService.getLocation(id)
+//            )
+//        } else
+//            post<PageResult<Location>>(
+//                _locationsLiveData,
+//                RetrofitService.retrofitService.getLocations(id, options = options)
+//            )
+//    }
 }

@@ -19,8 +19,8 @@ import com.example.exam.fragment.location.LocationFragment
 
 class MainFragment : Fragment() {
 
-    var binding: FragmentMainBinding? = null
-    var pagerAdapter: ViewPagerAdapter? = null
+    private var binding: FragmentMainBinding? = null
+    private var pagerAdapter: ViewPagerAdapter? = null
     private val sharedPreference: SharedPreferenceViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -32,6 +32,11 @@ class MainFragment : Fragment() {
             init()
         }
         return binding!!.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
     private fun init() {
