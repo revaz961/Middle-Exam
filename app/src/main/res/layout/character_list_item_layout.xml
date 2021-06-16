@@ -6,7 +6,7 @@
 
         <variable
             name="character"
-            type="com.example.exam.api.model.Character" />
+            type="com.example.exam.model.Character" />
     </data>
 
     <androidx.cardview.widget.CardView

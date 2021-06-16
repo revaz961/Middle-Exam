@@ -1,21 +1,22 @@
-package com.example.exam.fragment.location
+package com.example.exam.fragment.character
 
 import android.app.Dialog
+import androidx.core.view.isVisible
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.exam.adapter.LocationAdapter
+import com.example.exam.adapter.CharacterAdapter
 import com.example.exam.model.Character
 import com.example.exam.databinding.CharacterImageDialogLayoutBinding
-import com.example.exam.databinding.FragmentLocationBinding
+import com.example.exam.databinding.FragmentCharacterBinding
 import com.example.exam.extension.init
 import com.example.exam.fragment.BaseFragment
 
 
-class LocationFragment : BaseFragment<FragmentLocationBinding, LocationViewModel>(
-    FragmentLocationBinding::inflate,
-    LocationViewModel::class.java
+class CharacterFragment : BaseFragment<FragmentCharacterBinding, CharacterViewModel>(
+    FragmentCharacterBinding::inflate,
+    CharacterViewModel::class.java
 ) {
-
-    private lateinit var locationAdapter: LocationAdapter
+    private lateinit var characterAdapter: CharacterAdapter
 
     override fun start() {
         init()
@@ -27,18 +28,17 @@ class LocationFragment : BaseFragment<FragmentLocationBinding, LocationViewModel
     }
 
     private fun initRecycler() {
-        locationAdapter = LocationAdapter()
-
-        locationAdapter.click = {
+        characterAdapter = CharacterAdapter()
+        characterAdapter.click = {
             showDialog(it)
         }
-
-        locationAdapter.load = { adapter, list ->
-            viewModel.getCharacters(adapter, list)
+        with(binding.rvCharacter) {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = characterAdapter
         }
-
-        binding.rvLocation.layoutManager = LinearLayoutManager(requireContext())
-        binding.rvLocation.adapter = locationAdapter
+        characterAdapter.addLoadStateListener {
+            binding.progress.isVisible = it.refresh is LoadState.Loading
+        }
     }
 
     private fun showDialog(character: Character) {
@@ -53,9 +53,8 @@ class LocationFragment : BaseFragment<FragmentLocationBinding, LocationViewModel
     }
 
     private fun observes() {
-        viewModel.locationList.observe(viewLifecycleOwner, {
-            locationAdapter.submitData(lifecycle, it)
+        viewModel.characterList.observe(viewLifecycleOwner, {
+            characterAdapter.submitData(lifecycle, it)
         })
     }
-
 }

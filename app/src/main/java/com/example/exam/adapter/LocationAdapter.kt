@@ -6,28 +6,37 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.exam.api.model.Character
-import com.example.exam.api.model.Location
+import com.example.exam.Click
+import com.example.exam.LoadData
+import com.example.exam.model.Character
+import com.example.exam.model.Location
 import com.example.exam.databinding.LocationListItemLayoutBinding
 
-class LocationAdapter(private val click:(character: Character)->Unit, private val load: (adapter: EpisodeCharacterAdapter, List<String>) -> Unit) :
+class LocationAdapter() :
     PagingDataAdapter<Location, LocationAdapter.LocationViewHolder>(LocationComparator) {
+
+    lateinit var click: Click<Character>
+    lateinit var load: LoadData<String>
 
     inner class LocationViewHolder(private val binding: LocationListItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
+        private lateinit var model: Location
+
         fun bind() {
-            val model = getItem(absoluteAdapterPosition)
+            model = getItem(absoluteAdapterPosition)!!
             binding.location = model
 
-            val adapter = EpisodeCharacterAdapter(click)
+            val adapter = NestedCharacterAdapter()
+            adapter.click = click
+
             val layoutManager =
                 LinearLayoutManager(binding.root.context)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
             binding.rvCharacter.layoutManager = layoutManager
             binding.rvCharacter.adapter = adapter
 
-            load(adapter,model?.residents!!)
+            load(adapter, model.residents!!)
         }
     }
 

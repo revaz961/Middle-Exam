@@ -7,10 +7,11 @@ import android.content.Context
 class App:Application() {
     override fun onCreate() {
         super.onCreate()
-        context = applicationContext
+        instance = this
     }
 
-    companion object{
-        var context: Context? = null
+    companion object {
+        lateinit var instance: App
+            private set
     }
 }

@@ -1,25 +1,28 @@
 package com.example.exam.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.exam.api.model.Character
+import com.example.exam.Click
+import com.example.exam.model.Character
 import com.example.exam.databinding.CharacterListItemLayoutBinding
 
-class CharacterAdapter(private val click:(character:Character)->Unit) :
+class CharacterAdapter() :
     PagingDataAdapter<Character, CharacterAdapter.CharacterViewHolder>(CharacterComparator) {
+
+    lateinit var click: Click<Character>
 
     inner class CharacterViewHolder(private val binding: CharacterListItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private lateinit var model: Character
         fun bind() {
-            val model = getItem(absoluteAdapterPosition)
+            model = getItem(absoluteAdapterPosition)!!
             binding.character = model
             binding.executePendingBindings()
             binding.root.setOnClickListener {
-                click(model!!)
+                click(model)
             }
         }
     }

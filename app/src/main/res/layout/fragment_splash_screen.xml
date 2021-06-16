@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/main_bg"
-    tools:context=".fragment.SplashScreenFragment"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rick And Morty"
-        android:textSize="40sp"
-        android:textColor="@color/text_main"/>
+    <data>
 
+    </data>
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/rick_and_morty_bg2"
-        android:scaleType="centerCrop"/>
+        android:layout_height="match_parent"
+        android:background="@color/main_bg"
+        tools:context=".fragment.splashscreen.SplashScreenFragment"
+        android:orientation="vertical">
 
-    <ProgressBar
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        />
+        <TextView
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="50dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rick And Morty"
+            android:textSize="40sp"
+            android:textColor="@color/text_main" />
 
 
-</LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rick_and_morty_bg2"
+            android:scaleType="centerCrop" />
+
+        <ProgressBar
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp" />
+
+
+    </LinearLayout>
+</layout>

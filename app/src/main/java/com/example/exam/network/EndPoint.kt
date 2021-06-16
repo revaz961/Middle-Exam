@@ -1,4 +1,4 @@
-package com.example.exam.api
+package com.example.exam.network
 
 enum class EndPoint {
     CHARACTER {

@@ -1,9 +1,9 @@
-package com.example.exam.api
+package com.example.exam.network
 
-import com.example.exam.api.model.Character
-import com.example.exam.api.model.Episode
-import com.example.exam.api.model.Location
-import com.example.exam.api.model.PageResult
+import com.example.exam.model.Character
+import com.example.exam.model.Episode
+import com.example.exam.model.Location
+import com.example.exam.model.PageResult
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

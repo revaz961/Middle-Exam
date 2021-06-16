@@ -1,35 +1,38 @@
 package com.example.exam.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.exam.api.model.Character
-import com.example.exam.api.model.Episode
-import com.example.exam.databinding.CharacterListItemLayoutBinding
+import com.example.exam.Click
+import com.example.exam.LoadData
+import com.example.exam.model.Character
+import com.example.exam.model.Episode
 import com.example.exam.databinding.EpisodeListItemLayoutBinding
 
-class EpisodeAdapter(
-    private val click: (character: Character) -> Unit,
-    private val load: (adapter: EpisodeCharacterAdapter, List<String>) -> Unit
-) :
+
+class EpisodeAdapter() :
     PagingDataAdapter<Episode, EpisodeAdapter.EpisodeViewHolder>(EpisodeComparator) {
+
+    lateinit var click: Click<Character>
+    lateinit var load: LoadData<String>
 
     inner class EpisodeViewHolder(private val binding: EpisodeListItemLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        private lateinit var model:Episode
         fun bind() {
-            val model = getItem(absoluteAdapterPosition)
+            model = getItem(absoluteAdapterPosition)!!
             binding.episode = model
-            val adapter = EpisodeCharacterAdapter(click)
+            val adapter = NestedCharacterAdapter()
+            adapter.click = click
             val layoutManager =
                 LinearLayoutManager(binding.root.context)
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
             binding.rvCharacter.layoutManager = layoutManager
             binding.rvCharacter.adapter = adapter
-            load(adapter, model?.characters!!)
+            load(adapter, model.characters!!)
         }
     }
 

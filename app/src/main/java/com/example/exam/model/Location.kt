@@ -1,4 +1,4 @@
-package com.example.exam.api.model
+package com.example.exam.model
 
 data class Location(
     val id: Int,

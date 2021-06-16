@@ -4,7 +4,7 @@
     <data>
         <variable
             name="location"
-            type="com.example.exam.api.model.Location" />
+            type="com.example.exam.model.Location" />
     </data>
 
     <LinearLayout

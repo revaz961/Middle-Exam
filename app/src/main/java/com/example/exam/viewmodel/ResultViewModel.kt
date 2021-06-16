@@ -1,18 +1,17 @@
-package com.example.exam.common
+package com.example.exam.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.exam.adapter.EpisodeCharacterAdapter
-import com.example.exam.api.ResultHandler
-import com.example.exam.api.RetrofitService
-import com.example.exam.api.model.Character
+import com.example.exam.adapter.NestedCharacterAdapter
+import com.example.exam.network.ResultHandler
+import com.example.exam.network.RetrofitService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import retrofit2.Response
 
-open class BaseViewModel : ViewModel() {
+open class ResultViewModel : ViewModel() {
 
     suspend fun <T> post(
         liveData: MutableLiveData<ResultHandler<T>>,
@@ -25,7 +24,7 @@ open class BaseViewModel : ViewModel() {
         return body!!
     }
 
-    fun getCharacters(adapter: EpisodeCharacterAdapter, list: List<String>) {
+    fun getCharacters(adapter: NestedCharacterAdapter, list: List<String>) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val id = list.fold("") { acc, elem ->

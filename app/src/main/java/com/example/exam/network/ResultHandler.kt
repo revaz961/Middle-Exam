@@ -1,6 +1,4 @@
-package com.example.exam.api
-
-import com.example.exam.api.model.PageResult
+package com.example.exam.network
 
 sealed class ResultHandler<out T> {
     data class Success<T>(val data: T?) : ResultHandler<T>()

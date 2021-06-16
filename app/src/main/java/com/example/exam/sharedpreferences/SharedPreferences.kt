@@ -1,15 +1,12 @@
-package com.example.exam
+package com.example.exam.sharedpreferences
 
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
-import androidx.lifecycle.ViewModel
+import com.example.exam.App
 
-class SharedPreferenceViewModel : ViewModel() {
-    private lateinit var sharedPreferences: SharedPreferences
-
-    fun init(context: Context) {
-        sharedPreferences = context.getSharedPreferences("local_storage", MODE_PRIVATE)
+object SharedPreferences {
+    val sharedPreferences:SharedPreferences by lazy{
+        App.instance.getSharedPreferences("local_storage", MODE_PRIVATE)
     }
 
     fun getUser(): Pair<String, String>? {

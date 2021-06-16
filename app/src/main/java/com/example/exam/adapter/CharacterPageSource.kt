@@ -3,8 +3,8 @@ package com.example.exam.adapter
 import android.util.Log.d
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.exam.api.RetrofitService
-import com.example.exam.api.model.Character
+import com.example.exam.network.RetrofitService
+import com.example.exam.model.Character
 
 class CharacterPageSource() :
     PagingSource<Int, Character>() {

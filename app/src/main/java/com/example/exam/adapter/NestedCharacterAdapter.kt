@@ -3,12 +3,17 @@ package com.example.exam.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.exam.api.model.Character
+import com.example.exam.Click
+import com.example.exam.model.Character
 import com.example.exam.databinding.CommonListItemCharacterLayoutBinding
 
-class EpisodeCharacterAdapter(private val click: (character: Character) -> Unit) :
-    RecyclerView.Adapter<EpisodeCharacterAdapter.CharacterViewHolder>() {
+class NestedCharacterAdapter() :
+    RecyclerView.Adapter<NestedCharacterAdapter.CharacterViewHolder>() {
+
+    lateinit var click: Click<Character>
+
     private val characters = mutableListOf<Character>()
+
     fun setCharacter(list: List<Character>) {
         characters.addAll(list)
         notifyDataSetChanged()
@@ -16,11 +21,14 @@ class EpisodeCharacterAdapter(private val click: (character: Character) -> Unit)
 
     inner class CharacterViewHolder(private val binding: CommonListItemCharacterLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var model: Character
+
         fun bind() {
-            val model = characters[absoluteAdapterPosition]
+            model = characters[absoluteAdapterPosition]
             binding.character = model
             binding.root.setOnClickListener {
-                click(characters[absoluteAdapterPosition])
+                click(model)
             }
         }
     }
